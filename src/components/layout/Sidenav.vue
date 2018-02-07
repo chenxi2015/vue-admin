@@ -98,12 +98,12 @@ export default {
               name: '用户画像',
               path: '/dashboard/index'
             },
-            {
-              id: '2',
-              index: 'dashboarddeal',
-              name: '交易分析',
-              path: '/dashboard/deal'
-            }
+            // {
+            //   id: '2',
+            //   index: 'dashboarddeal',
+            //   name: '交易分析',
+            //   path: '/dashboard/deal'
+            // }
           ]
         },
         {
@@ -146,12 +146,12 @@ export default {
             }
           ]
         },
-        {
-          id: '4',
-          index: 'basecharts',
-          icon: 'icon-group',
-          name: '图表'
-        }
+        // {
+        //   id: '4',
+        //   index: 'basecharts',
+        //   icon: 'icon-group',
+        //   name: '图表'
+        // }
       ]
     }
   },
