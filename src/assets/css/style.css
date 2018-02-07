@@ -1,4 +1,4 @@
-.yj-header .el-badge__content.is-fixed {top: 20px !important;}
+.yj-header .el-badge__content.is-fixed {top: 20px !important; right: 20px !important;}
 .el-menu-item-group__title {padding: 0px;}
 .el-menu-vertical .el-submenu .el-menu {border-radius: 4px !important; margin-left: 4px; border: none;}
 
@@ -13,7 +13,7 @@
 /* .el-menu-vertical .el-menu-item.is-active {background: #1890ff !important;} */
 .el-menu {border-right: none;}
 .el-menu li {text-align: left;}
-.icon-div:hover {background: #e6f7ff}
+/* .icon-div:hover {background: #e6f7ff} */
 .el-menu--horizontal .el-submenu .el-menu-item {text-align: left;}
 .el-menu-demo {float: right;}
 .el-menu--horizontal .el-submenu>.el-menu {width: 100px; }

@@ -31,9 +31,9 @@
             </el-menu-item>
           </el-menu>
 
-          <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+          <el-menu :default-active="activeIndex" menu-trigger="hover" class="el-menu-demo" mode="horizontal" @select="handleSelect">
             <el-menu-item index="2" style="border: none !important;">
-                <el-autocomplete popper-class="my-autocomplete" v-model="state3" :fetch-suggestions="querySearch" placeholder="请输入内容" @select="handleSelect">
+                <el-autocomplete popper-class="my-autocomplete" v-model="state3" :fetch-suggestions="querySearch" placeholder="站内搜索" @select="handleSelect">
                     <i class="el-icon-search el-input__icon" style="font-size: 16px;" slot="suffix" @click="handleIconClick"></i>
                     <template slot-scope="props">
                         <div class="name">{{ props.item.value }}</div>
@@ -41,22 +41,50 @@
                 </el-autocomplete>
             </el-menu-item>
 
-            <el-menu-item index="3">
+            <el-menu-item index="3" style=" border: none !important; padding: 0px;">
+              <div class="icon-div" style="cursor: pointer; display: inline-block; width: 60px; text-align: center;">
+                <el-tooltip class="item" effect="dark" content="使用帮助" placement="bottom">
+                  <i class="el-icon-question" style="font-size: 18px; color: #666;"></i>
+                </el-tooltip>
+              </div>
+            </el-menu-item>
+
+            <el-menu-item index="4" style="padding-left: 0px;" v-popover:popover1>
               <div class="icon-div" style="cursor: pointer; display: inline-block; width: 60px; text-align: center;">
                 <el-badge :value="991" :max="99" class="item">
                   <i class="el-icon-bell" style="font-size: 18px; color: #666;"></i>
                 </el-badge>
               </div>
+              <el-popover
+                ref="popover1"
+                placement="bottom-end"
+                width="340"
+                trigger="click">
+                <div style="height: 340px;">
+                  <el-row style="border-bottom: 1px solid #e4e7ed; height: 35px;">
+                    <el-col :span="8" ><div @click="handleNoticeNav(1)" class="grid-content" :class="[isnActive == 1 ? noticeActive : '']">通知(5)</div></el-col>
+                    <el-col :span="8" ><div @click="handleNoticeNav(2)" class="grid-content" :class="[isnActive == 2 ? noticeActive : '']">消息(6)</div></el-col>
+                    <el-col :span="8" ><div @click="handleNoticeNav(3)" class="grid-content" :class="[isnActive == 3 ? noticeActive : '']">待办</div></el-col>
+                  </el-row>
+                </div>
+                <!-- <el-tabs v-model="activeName" @tab-click="handleClick">
+                  <el-tab-pane label="通知" name="first">通知</el-tab-pane>
+                  <el-tab-pane label="消息" name="second">消息</el-tab-pane>
+                  <el-tab-pane label="待办" name="third">待办</el-tab-pane>
+                </el-tabs> -->
+              </el-popover>
             </el-menu-item>
 
-            <el-submenu index="4" class="header-admin-logo">
+            <el-submenu index="5" class="header-admin-logo">
               <template slot="title">
                 <img src="../../assets/images/photo.png" style="width: 25px; height: 25px; display: inline-block; vertical-align: middle;" alt="" srcset="">
                 <span>嘻哈学车</span>
               </template>
-              <el-menu-item index="4-1">个人中心</el-menu-item>
-              <el-menu-item index="4-2">设置</el-menu-item>
-              <router-link to="/admin/login"><el-menu-item index="4-3">退出登录</el-menu-item></router-link>
+              <el-menu-item index="5-1">个人中心</el-menu-item>
+              <el-menu-item index="5-2">设置</el-menu-item>
+              <router-link to="/admin/login">
+                <el-menu-item index="5-3">退出登录</el-menu-item>
+              </router-link>
             </el-submenu>
 
           </el-menu>
@@ -78,11 +106,14 @@ export default {
   name: 'Sidenav',
   data () {
     return {
+      isnActive: 1,
+      activeName: 'first',
       isCollapse: false,
       activeIndex: '1',
       itemGroupStyle: {
         'border-radius': '4px'
       },
+      noticeActive: 'yj-notice-active',
       state3: '',
       restaurants: [],
       menuList: [
@@ -165,6 +196,9 @@ export default {
     }
   },
   methods: {
+    handleNoticeNav (type) {
+      this.isnActive = type
+    },
     handleIconClick (ev) {
       console.log(ev)
     },
@@ -214,11 +248,10 @@ export default {
 </script>
 
 <style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-  }
+  .yj-el-popover {top: 44px !important; height: 400px !important;}
+  .yj-notice-active {border-bottom: 1px solid #409EFF; color: #409EFF;}
+</style>
+
+<style scoped>
+  .grid-content {text-align: center; cursor: pointer; height: 34px;}
 </style>

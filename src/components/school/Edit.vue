@@ -115,7 +115,7 @@ export default {
 </script>
 <style>
   .school-edit .el-select .el-input {width: 380px !important;}
-  .ql-editor {height: 400px;}
+  .ql-editor {height: 400px !important;}
 </style>
 
 <style scoped>

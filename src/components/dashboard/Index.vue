@@ -1,28 +1,69 @@
 <template>
   <div class="index" style="">
     <el-col :span="8" style="padding: 0px 10px;">
-      <div style="background: #fff; height: 250px;">
-        <ve-line
-          :data="chartData"
-          :colors="chartColors"
-          :width="width"
-          :height="height"
-          :grid="grid"
-          :scale="scale"
-          :settings="ringchartSettings">
-        </ve-line>
-        <!-- <ve-line :data="chartData" :height="height"></ve-line> -->
-      </div>
+      <el-card class="box-card">
+        <div slot="header" class="clearfix">
+          <span>学员数</span>
+          <el-dropdown trigger="click" style="float: right; padding: 3px 0; cursor: pointer;" >
+            <span class="el-dropdown-link">
+              操作<i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>今天</el-dropdown-item>
+              <el-dropdown-item>昨天</el-dropdown-item>
+              <el-dropdown-item divided>最近7天</el-dropdown-item>
+              <el-dropdown-item>最近30天</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
+        <div style="background: #fff; height: 250px;">
+          <ve-line :data="chartData" :colors="chartColors" :width="width" :height="height" :grid="grid" :scale="scale" :settings="ringchartSettings"></ve-line>
+        </div>
+      </el-card>
     </el-col>
     <el-col :span="8" style="padding: 0px 10px;">
-      <div style="background: #fff; height: 250px;">
-        <ve-ring :data="ringchartData" :settings="chartSettings"></ve-ring>
-      </div>
+      <el-card class="box-card">
+        <div slot="header" class="clearfix">
+          <span>报名班制订单数</span>
+          <el-dropdown trigger="click" style="float: right; padding: 3px 0; cursor: pointer;" >
+            <span class="el-dropdown-link">
+              操作<i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>今天</el-dropdown-item>
+              <el-dropdown-item>昨天</el-dropdown-item>
+              <el-dropdown-item divided>最近7天</el-dropdown-item>
+              <el-dropdown-item>最近30天</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
+        <div style="background: #fff; height: 250px;">
+          <ve-histogram :data="histogramchartData" :height="height" :settings="histogramchartSettings"></ve-histogram>
+        </div>
+      </el-card>
     </el-col>
+
     <el-col :span="8" style="padding: 0px 10px;">
-      <div style="background: #fff; height: 250px;">
-        OK
-      </div>
+      <el-card class="box-card">
+        <div slot="header" class="clearfix">
+          <span>预约计时订单数</span>
+          <el-dropdown trigger="click" style="float: right; padding: 3px 0; cursor: pointer;" >
+            <span class="el-dropdown-link">
+              操作<i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>今天</el-dropdown-item>
+              <el-dropdown-item>昨天</el-dropdown-item>
+              <el-dropdown-item divided>最近7天</el-dropdown-item>
+              <el-dropdown-item>最近30天</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
+        <div style="background: #fff; height: 250px;">
+          <ve-line :data="linechartData" :height="height" :settings="linechartSettings"></ve-line>
+        </div>
+      </el-card>
+
     </el-col>
   </div>
 </template>
@@ -31,6 +72,7 @@
 // import axios from 'axios'
 import VeLine from 'v-charts/lib/line'
 import VeRing from 'v-charts/lib/ring'
+import VeHistogram from 'v-charts/lib/histogram'
 
 export default {
   name: 'Index',
@@ -54,7 +96,30 @@ export default {
       }
     }
   },
+  components: {VeLine, VeRing, VeHistogram},
   created () {
+    this.linechartData = {
+      columns: ['日期', '销售额-1季度', '销售额-2季度', '占比', '其他'],
+      rows: [
+        { '日期': '1月1日', '销售额-1季度': 1523, '销售额-2季度': 1523, '占比': 0.12, '其他': 100 },
+        { '日期': '1月2日', '销售额-1季度': 1223, '销售额-2季度': 1523, '占比': 0.345, '其他': 100 },
+        { '日期': '1月3日', '销售额-1季度': 2123, '销售额-2季度': 1523, '占比': 0.7, '其他': 100 },
+        { '日期': '1月4日', '销售额-1季度': 4123, '销售额-2季度': 1523, '占比': 0.31, '其他': 100 },
+        { '日期': '1月5日', '销售额-1季度': 3123, '销售额-2季度': 1523, '占比': 0.12, '其他': 100 },
+        { '日期': '1月6日', '销售额-1季度': 7123, '销售额-2季度': 1523, '占比': 0.65, '其他': 100 }
+      ]
+    }
+    this.linechartSettings = {}
+    this.histogramchartData = {
+      columns: ['日期', '成本', '利润', '占比', '其他'],
+      rows: [
+        { '日期': '1月1日', '成本': 1523, '利润': 1523, '占比': 0.12, '其他': 100 },
+        { '日期': '1月2日', '成本': 1223, '利润': 1523, '占比': 0.345, '其他': 100 },
+        { '日期': '1月3日', '成本': 2123, '利润': 1523, '占比': 0.7, '其他': 100 },
+        { '日期': '1月4日', '成本': 4123, '利润': 1523, '占比': 0.31, '其他': 100 }
+      ]
+    }
+    this.histogramchartSettings = {}
     this.chartData = {
       columns: ['日期', '销售额', '占比'],
       rows: [
@@ -100,7 +165,6 @@ export default {
       metrics: '利润'
     }
   },
-  components: { VeLine, VeRing },
   mounted () {
     this.restaurants = this.loadAll()
   },
@@ -158,4 +222,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .box-card {
+    box-shadow: none;
+    border: none;
+    text-align: left;
+  }
 </style>
