@@ -4,7 +4,7 @@
       <el-menu :default-active="onRoutes" class="el-menu-vertical" background-color="#001529" active-text-color="#1890ff" text-color="#FEFEFE" unique-opened router :collapse="isCollapse">
         <div class="logo-sider" style="">
           <img src="../../assets/images/logo.png" style="border-radius: 50%;" alt="" >
-          <h2 style="font-weight: 300;">嘻哈管理系统</h2>
+          <h2 style="font-weight: 300;">某某管理系统</h2>
         </div>
         <template v-for="item in menuList">
           <template v-if="item.children">

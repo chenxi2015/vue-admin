@@ -55,7 +55,6 @@
                     @focus="onEditorFocus($event)"
                     @ready="onEditorReady($event)">
       </quill-editor>
-      <!-- <quill-editor ref="myTextEditor" v-model="content" :config="editorOption"></quill-editor> -->
     </el-tab-pane>
   </el-tabs>
 </div>
@@ -88,21 +87,21 @@ export default {
     quillEditor
   },
   computed: {
-    editor() {
+    editor () {
       return this.$refs.myTextEditor.quill
-    },
+    }
   },
   methods: {
-    onEditorBlur(editor) {
+    onEditorBlur (editor) {
       console.log('editor blur!', editor)
     },
-    onEditorFocus(editor) {
+    onEditorFocus (editor) {
       console.log('editor focus!', editor)
     },
-    onEditorReady(editor) {
+    onEditorReady (editor) {
       console.log('editor ready!', editor)
     },
-    onEditorChange({ editor, html, text }) {
+    onEditorChange ({ editor, html, text }) {
       this.content = html
     },
     handleClick (tab, event) {
