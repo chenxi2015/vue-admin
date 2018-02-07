@@ -97,7 +97,7 @@ export default {
               index: 'dashboardindex',
               name: '用户画像',
               path: '/dashboard/index'
-            },
+            }
             // {
             //   id: '2',
             //   index: 'dashboarddeal',
@@ -145,7 +145,7 @@ export default {
               path: '/coach/timeset'
             }
           ]
-        },
+        }
         // {
         //   id: '4',
         //   index: 'basecharts',
