@@ -1,0 +1,30 @@
+.yj-header .el-badge__content.is-fixed {top: 20px !important;}
+.el-menu-item-group__title {padding: 0px;}
+.el-menu-vertical .el-submenu .el-menu {border-radius: 4px !important; margin-left: 4px; border: none;}
+
+.el-header {background-color: #B3C0D1; color: #333; line-height: 60px;}
+.el-aside {color: #333;}
+ a {text-decoration: none; color: #409EFF}
+.logo-sider {background: #002140; height: 60px; color: #fff; font-size: 16px; line-height: 60px; overflow: hidden; }
+.logo-sider img {width: 30px; height: 30px; display: inline-block; vertical-align: middle;}
+.logo-sider h2 {display: inline-block; vertical-align: middle; font-size: 18px; margin:0 0 0 12px;}
+.el-menu-vertical { -webkit-box-shadow: 2px 0 6px rgba(0,21,41,.35); box-shadow: 2px 0 6px rgba(0,21,41,.35);}
+.el-menu-vertical:not(.el-menu--collapse) {width: 256px; min-height: 400px; z-index: 99;}
+/* .el-menu-vertical .el-menu-item.is-active {background: #1890ff !important;} */
+.el-menu {border-right: none;}
+.el-menu li {text-align: left;}
+.icon-div:hover {background: #e6f7ff}
+.el-menu--horizontal .el-submenu .el-menu-item {text-align: left;}
+.el-menu-demo {float: right;}
+.el-menu--horizontal .el-submenu>.el-menu {width: 100px; }
+.header-admin-logo .el-menu-item {width: 100px; min-width: 100px;}
+.el-autocomplete-suggestion.my-autocomplete li {line-height: normal; padding: 7px;}
+.my-autocomplete li .name {text-overflow: ellipsis; overflow: hidden;}
+.my-autocomplete li .addr {font-size: 12px; color: #b4b4b4;}
+.my-autocomplete li .highlighted .addr {color: #ddd;}
+.iconfont {font-size: 20px; width: 24px; text-align: center; vertical-align: middle; margin-right: 5px; color: #FEFEFE;}
+.yj-header {text-align: right; font-size: 12px; background: #fff; box-shadow: 0 1px 4px rgba(0,21,41,.08);padding-left: 0px; z-index: 99;}
+.yj-header .el-menu--horizontal {border-bottom: none;}
+.yj-breadcrumb-div {padding: 16px 32px 0; background: #fff; border-bottom: 1px solid #e8e8e8; padding-bottom: 16px;}
+.notify .notify-alert h2.notice-title {width: auto !important; margin-top: 0px !important;}
+.notify .notify-iframe {overflow: hidden;}
