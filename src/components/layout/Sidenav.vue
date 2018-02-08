@@ -109,7 +109,7 @@ export default {
     return {
       isnActive: 1,
       activeName: 'first',
-      isCollapse: localStorage.getItem('iscollapse') === 1,
+      isCollapse: localStorage.getItem('iscollapse') === '1',
       activeIndex: '1',
       itemGroupStyle: {
         'border-radius': '4px'
