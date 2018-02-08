@@ -16,7 +16,7 @@
 /* .icon-div:hover {background: #e6f7ff} */
 .el-menu--horizontal .el-submenu .el-menu-item {text-align: left;}
 .el-menu-demo {float: right;}
-.el-menu--horizontal .el-submenu>.el-menu {width: 100px; }
+.el-menu--horizontal .el-submenu>.el-menu {width: 100px !important; }
 .header-admin-logo .el-menu-item {width: 100px; min-width: 100px;}
 .el-autocomplete-suggestion.my-autocomplete li {line-height: normal; padding: 7px;}
 .my-autocomplete li .name {text-overflow: ellipsis; overflow: hidden;}

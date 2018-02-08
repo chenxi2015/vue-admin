@@ -44,7 +44,8 @@
             <el-menu-item index="3" style=" border: none !important; padding: 0px;">
               <div class="icon-div" style="cursor: pointer; display: inline-block; width: 60px; text-align: center;">
                 <el-tooltip class="item" effect="dark" content="使用帮助" placement="bottom">
-                  <i class="el-icon-question" style="font-size: 18px; color: #666;"></i>
+                  <!-- <i class="el-icon-question" style="font-size: 18px; color: #666;"></i> -->
+                  <i class="iconfont icon-102" style="font-size: 18px; color: #666;"></i>
                 </el-tooltip>
               </div>
             </el-menu-item>
@@ -108,7 +109,7 @@ export default {
     return {
       isnActive: 1,
       activeName: 'first',
-      isCollapse: false,
+      isCollapse: localStorage.getItem('iscollapse') == 1 ? true : false,
       activeIndex: '1',
       itemGroupStyle: {
         'border-radius': '4px'
@@ -220,6 +221,8 @@ export default {
     },
     handleNav () {
       this.isCollapse = !this.isCollapse
+      console.log(this.isCollapse)
+      localStorage.setItem('iscollapse', this.isCollapse ? 1 : 0);
     },
     querySearch (queryString, cb) {
       var restaurants = this.restaurants

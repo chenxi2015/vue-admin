@@ -1,70 +1,207 @@
 <template>
   <div class="index" style="">
-    <el-col :span="8" style="padding: 0px 10px;">
+    <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8" style="padding: 0px 10px; margin: 10px 0px;">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <span>学员数</span>
-          <el-dropdown trigger="click" style="float: right; padding: 3px 0; cursor: pointer;" >
+          <span>学员数 <span style="color: #409EFF">总数500人</span></span>
+          <el-dropdown trigger="click" style="float: right; cursor: pointer;" >
             <span class="el-dropdown-link">
               操作<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>今天</el-dropdown-item>
-              <el-dropdown-item>昨天</el-dropdown-item>
-              <el-dropdown-item divided>最近7天</el-dropdown-item>
-              <el-dropdown-item>最近30天</el-dropdown-item>
+              <el-dropdown-item>今日</el-dropdown-item>
+              <el-dropdown-item>本周</el-dropdown-item>
+              <el-dropdown-item divided>本月</el-dropdown-item>
+              <el-dropdown-item>全年</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
+          <div style="float: right; cursor: pointer; margin-right: 10px;">
+            <el-tooltip class="item" effect="dark" content="使用说明" placement="bottom">
+              <i class="iconfont icon-shuoming" style="color: #999; font-size: 16px;"></i>
+            </el-tooltip>
+          </div>
         </div>
         <div style="background: #fff; height: 250px;">
-          <ve-line :data="chartData" :colors="chartColors" :width="width" :height="height" :grid="grid" :scale="scale" :settings="ringchartSettings"></ve-line>
+          <ve-line :data="chartData1" :colors="chartColors1" :height="height" :settings="chartSettings1"></ve-line>
         </div>
       </el-card>
     </el-col>
-    <el-col :span="8" style="padding: 0px 10px;">
+    <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8" style="padding: 0px 10px; margin: 10px 0px;">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <span>报名班制订单数</span>
-          <el-dropdown trigger="click" style="float: right; padding: 3px 0; cursor: pointer;" >
+          <span>学员科目人数 <span style="color: #409EFF">总数1111500人</span></span>
+          <el-dropdown trigger="click" style="float: right; cursor: pointer;" >
             <span class="el-dropdown-link">
               操作<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>今天</el-dropdown-item>
-              <el-dropdown-item>昨天</el-dropdown-item>
-              <el-dropdown-item divided>最近7天</el-dropdown-item>
-              <el-dropdown-item>最近30天</el-dropdown-item>
+              <el-dropdown-item>今日</el-dropdown-item>
+              <el-dropdown-item>本周</el-dropdown-item>
+              <el-dropdown-item divided>本月</el-dropdown-item>
+              <el-dropdown-item>全年</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
+          <div style="float: right; cursor: pointer; margin-right: 10px;">
+            <el-tooltip class="item" effect="dark" content="使用说明" placement="bottom">
+              <i class="iconfont icon-shuoming" style="color: #999; font-size: 16px;"></i>
+            </el-tooltip>
+          </div>
         </div>
         <div style="background: #fff; height: 250px;">
-          <ve-histogram :data="histogramchartData" :height="height" :settings="histogramchartSettings"></ve-histogram>
+          <ve-histogram :data="chartData2" :colors="chartColors2" :height="height" :settings="chartSettings2"></ve-histogram>
         </div>
       </el-card>
     </el-col>
 
-    <el-col :span="8" style="padding: 0px 10px;">
+    <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8" style="padding: 0px 10px; margin: 10px 0px;">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <span>预约计时订单数</span>
-          <el-dropdown trigger="click" style="float: right; padding: 3px 0; cursor: pointer;" >
+          <span>学员男女比例</span>
+          <el-dropdown trigger="click" style="float: right; cursor: pointer;" >
             <span class="el-dropdown-link">
               操作<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>今天</el-dropdown-item>
-              <el-dropdown-item>昨天</el-dropdown-item>
-              <el-dropdown-item divided>最近7天</el-dropdown-item>
-              <el-dropdown-item>最近30天</el-dropdown-item>
+              <el-dropdown-item>今日</el-dropdown-item>
+              <el-dropdown-item>本周</el-dropdown-item>
+              <el-dropdown-item divided>本月</el-dropdown-item>
+              <el-dropdown-item>全年</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
+          <div style="float: right; cursor: pointer; margin-right: 10px;">
+            <el-tooltip class="item" effect="dark" content="使用说明" placement="bottom">
+              <i class="iconfont icon-shuoming" style="color: #999; font-size: 16px;"></i>
+            </el-tooltip>
+          </div>
         </div>
         <div style="background: #fff; height: 250px;">
-          <ve-line :data="linechartData" :height="height" :settings="linechartSettings"></ve-line>
+          <ve-pie :data="chartData3" :colors="chartColors3" :height="height" :settings="chartSettings3"></ve-pie>
         </div>
       </el-card>
-
     </el-col>
+
+    <el-col :xs="24" :sm="24" :md="24" :lg="16" :xl="16" style="padding: 0px 10px; margin: 10px 0px;">
+      <el-card class="box-card yj-header-box-card">
+        <div slot="header" class="clearfix">
+          <span>报名班制 / 预约计时 订单数</span>
+          <el-dropdown trigger="click" style="float: right; cursor: pointer;" >
+            <span class="el-dropdown-link">
+              操作<i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>今日</el-dropdown-item>
+              <el-dropdown-item>本周</el-dropdown-item>
+              <el-dropdown-item divided>本月</el-dropdown-item>
+              <el-dropdown-item>全年</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+          <el-date-picker style="float: right; margin-top: -7px; margin-right: 10px;" v-model="searchForm.starttime" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期"></el-date-picker>
+          <div style="float: right; cursor: pointer; margin-right: 10px;">
+            <el-tooltip class="item" effect="dark" content="使用说明" placement="bottom">
+              <i class="iconfont icon-shuoming" style="color: #999; font-size: 16px;"></i>
+            </el-tooltip>
+          </div>
+        </div>
+        <div style="background: #fff; height: 250px;">
+          <ve-line :data="chartData4" :colors="chartColors4" :width="width" :height="height" :grid="grid" :scale="scale" :settings="chartSettings4"></ve-line>
+          <!-- <ve-line :data="doublelinechartData" :colors="doublelinechartColors" :width="width" :height="height" :grid="grid" :scale="scale" :settings="doublelinerchartSettings"></ve-line> -->
+        </div>
+      </el-card>
+    </el-col>
+
+    <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8" style="padding: 0px 10px; margin: 10px 0px;">
+      <el-card class="box-card">
+        <div slot="header" class="clearfix">
+          <span>学员好评率</span>
+          <el-dropdown trigger="click" style="float: right; cursor: pointer;" >
+            <span class="el-dropdown-link">
+              操作<i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>今日</el-dropdown-item>
+              <el-dropdown-item>本周</el-dropdown-item>
+              <el-dropdown-item divided>本月</el-dropdown-item>
+              <el-dropdown-item>全年</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+          <div style="float: right; cursor: pointer; margin-right: 10px;">
+            <el-tooltip class="item" effect="dark" content="使用说明" placement="bottom">
+              <i class="iconfont icon-shuoming" style="color: #999; font-size: 16px;"></i>
+            </el-tooltip>
+          </div>
+        </div>
+        <div style="background: #fff; height: 250px; ">
+          <div style="text-align: center;">
+            <el-tag>预约计时</el-tag>
+            <el-tag type="success">报名班制</el-tag>
+          </div>
+          <div style="margin-bottom: 40px; margin-top: 50px;">
+            <el-progress :text-inside="true" :stroke-width="18" :percentage="70"></el-progress>
+          </div>
+          <el-progress :text-inside="true" :stroke-width="18" :percentage="80" status="success"></el-progress>
+          <!-- <el-progress type="circle" :percentage="65"></el-progress> -->
+          <!-- <el-progress type="circle" :percentage="86"></el-progress> -->
+          <!-- <ve-bar :data="chartData5" :width="width" :height="height" :colors="chartColors5" :settings="chartSettings5"></ve-bar> -->
+        </div>
+      </el-card>
+    </el-col>
+
+    <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24" style="padding: 0px 10px; margin: 10px 0px;">
+      <el-card class="box-card">
+        <div slot="header" class="clearfix">
+          <span>财务统计</span>
+          <el-dropdown trigger="click" style="float: right; cursor: pointer;" >
+            <span class="el-dropdown-link">
+              操作<i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>今日</el-dropdown-item>
+              <el-dropdown-item>本周</el-dropdown-item>
+              <el-dropdown-item divided>本月</el-dropdown-item>
+              <el-dropdown-item>全年</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+          <el-date-picker style="float: right; margin-top: -7px; margin-right: 10px;" v-model="searchForm.starttime" type="daterange" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期"></el-date-picker>
+          <div style="float: right; cursor: pointer; margin-right: 10px;">
+            <el-tooltip class="item" effect="dark" content="使用说明" placement="bottom">
+              <i class="iconfont icon-shuoming" style="color: #999; font-size: 16px;"></i>
+            </el-tooltip>
+          </div>
+        </div>
+        <el-col :span="16">
+          <div style="background: #fff; height: 250px;">
+            <ve-histogram :data="chartData6" :colors="chartColors6" :width="width" :height="height" :grid="grid" :scale="scale" :settings="chartSettings6"></ve-histogram>
+          </div>
+        </el-col>
+        <el-col :span="8">
+          <el-col :span="12" style="padding: 10px;">
+            <div style="padding-top: 20px;">
+              <p style="padding: 0px; margin: 0px; color: #999; font-size: 14px;">报名班制金额</p>
+              <p style="padding: 0px; margin: 10px 0px; font-size: 24px;">¥ 345544.00</p>
+            </div>
+          </el-col>
+          <el-col :span="12" style="padding: 10px;">
+            <div style="padding-top: 20px;">
+              <p style="padding: 0px; margin: 0px; color: #999; font-size: 14px;">预约计时金额</p>
+              <p style="padding: 0px; margin: 10px 0px; font-size: 24px;">¥ 122323.00</p>
+            </div>            
+          </el-col>
+          <el-col :span="12" style="padding: 10px;">
+            <div style="padding-top: 20px;">
+              <p style="padding: 0px; margin: 0px; color: #999; font-size: 14px;">提现金额</p>
+              <p style="padding: 0px; margin: 10px 0px; font-size: 24px;">¥ 123123.00</p>
+            </div>           
+          </el-col>
+          <el-col :span="12" style="padding: 10px;">
+            <div style="padding-top: 20px;">
+              <p style="padding: 0px; margin: 0px; color: #999; font-size: 14px;">退款金额</p>
+              <p style="padding: 0px; margin: 10px 0px; font-size: 24px;">¥ 1212.00</p>
+            </div>          
+          </el-col>
+        </el-col>
+      </el-card>
+    </el-col>
+
   </div>
 </template>
 
@@ -72,15 +209,17 @@
 // import axios from 'axios'
 import VeLine from 'v-charts/lib/line'
 import VeRing from 'v-charts/lib/ring'
+import VePie from 'v-charts/lib/pie'
+import VeBar from 'v-charts/lib/bar'
 import VeHistogram from 'v-charts/lib/histogram'
 
 export default {
   name: 'Index',
   data () {
     return {
-      formInline: {
-        user: '',
-        region: ''
+      searchForm: {
+        starttime: '',
+        endtime: ''
       },
       loadingSeen: false,
       isCollapse: false,
@@ -96,74 +235,157 @@ export default {
       }
     }
   },
-  components: {VeLine, VeRing, VeHistogram},
+  components: {VeLine, VeRing, VeHistogram, VePie, VeBar},
   created () {
-    this.linechartData = {
-      columns: ['日期', '销售额-1季度', '销售额-2季度', '占比', '其他'],
+    // 学员数
+    this.chartData1 = {
+      columns: ['日期', '报名班制', '预约计时'],
       rows: [
-        { '日期': '1月1日', '销售额-1季度': 1523, '销售额-2季度': 1523, '占比': 0.12, '其他': 100 },
-        { '日期': '1月2日', '销售额-1季度': 1223, '销售额-2季度': 1523, '占比': 0.345, '其他': 100 },
-        { '日期': '1月3日', '销售额-1季度': 2123, '销售额-2季度': 1523, '占比': 0.7, '其他': 100 },
-        { '日期': '1月4日', '销售额-1季度': 4123, '销售额-2季度': 1523, '占比': 0.31, '其他': 100 },
-        { '日期': '1月5日', '销售额-1季度': 3123, '销售额-2季度': 1523, '占比': 0.12, '其他': 100 },
-        { '日期': '1月6日', '销售额-1季度': 7123, '销售额-2季度': 1523, '占比': 0.65, '其他': 100 }
+        { '日期': '1月', '报名班制': 1523, '预约计时': 1212 },
+        { '日期': '2月', '报名班制': 1223, '预约计时': 1231 },
+        { '日期': '3月', '报名班制': 2123, '预约计时': 2342 },
+        { '日期': '4月', '报名班制': 4423, '预约计时': 5431 },
+        { '日期': '5月', '报名班制': 3823, '预约计时': 1343 },
+        { '日期': '6月', '报名班制': 7123, '预约计时': 1823 },
+        { '日期': '7月', '报名班制': 4523, '预约计时': 1212 },
+        { '日期': '8月', '报名班制': 2223, '预约计时': 1231 },
+        { '日期': '9月', '报名班制': 2823, '预约计时': 2342 },
+        { '日期': '10月', '报名班制': 1123, '预约计时': 5431 },
+        { '日期': '11月', '报名班制': 3923, '预约计时': 1343 },
+        { '日期': '12月', '报名班制': 6123, '预约计时': 1823 }
       ]
     }
-    this.linechartSettings = {}
-    this.histogramchartData = {
-      columns: ['日期', '成本', '利润', '占比', '其他'],
-      rows: [
-        { '日期': '1月1日', '成本': 1523, '利润': 1523, '占比': 0.12, '其他': 100 },
-        { '日期': '1月2日', '成本': 1223, '利润': 1523, '占比': 0.345, '其他': 100 },
-        { '日期': '1月3日', '成本': 2123, '利润': 1523, '占比': 0.7, '其他': 100 },
-        { '日期': '1月4日', '成本': 4123, '利润': 1523, '占比': 0.31, '其他': 100 }
-      ]
+    this.chartSettings1 = {
+      axisSite: {
+        right: ['占比']
+      },
+      yAxisType: [],
+      area: false
     }
-    this.histogramchartSettings = {}
-    this.chartData = {
-      columns: ['日期', '销售额', '占比'],
-      rows: [
-        { '日期': '1月1日', '销售额': 1523, '占比': 0.12 },
-        { '日期': '1月2日', '销售额': 1223, '占比': 0.345 },
-        { '日期': '1月3日', '销售额': 2123, '占比': 0.7 },
-        { '日期': '1月4日', '销售额': 4123, '占比': 0.31 },
-        { '日期': '1月5日', '销售额': 3123, '占比': 0.12 },
-        { '日期': '1月6日', '销售额': 7123, '占比': 0.65 }
-      ]
-    }
-    this.chartColors = [
-      '#19d4ae', '#5ab1ef', '#fa6e86',
-      '#ffb980', '#0067a6', '#c4b4e4',
-      '#d87a80', '#9cbbff', '#d9d0c7',
-      '#87a997', '#d49ea2', '#5b4947',
-      '#7ba3a8'
+    this.chartColors1 = [
+      '#5ab1ef', '#fa6e86'
     ]
+    // 学员科目人数
+    this.chartData2 = {
+      columns: ['lesson', '人数'],
+      rows: [
+        {'lesson': '科一', '人数': 1523},
+        {'lesson': '科二', '人数': 1223},
+        {'lesson': '科三', '人数': 2123},
+        {'lesson': '科四', '人数': 4123},
+        {'lesson': '驾照', '人数': 3123}
+      ]
+    }
+    this.chartSettings2 = {}
+    this.chartColors2 = [
+      '#5ab1ef'
+    ]
+    // 学员男女比例
+    this.chartData3 = {
+      columns: ['男', '女'],
+      rows: [
+        {'sex': '男', 'count': 1523},
+        {'sex': '女', 'count': 1223}
+      ]
+    }
+    this.chartSettings3 = {
+      dimension: 'sex',
+      metrics: 'count',
+      selectedMode: 'single',
+      hoverAnimation: false,
+      radius: 80,
+      offsetY: 145
+    }
+    this.chartColors3 = [
+      '#409EFF', '#F56C6C'
+    ]
+    // 报名班制预约计时
+    this.chartData4 = {
+      columns: ['日期', '报名班制', '预约计时'],
+      rows: [
+        { '日期': '1月', '报名班制': 1523, '预约计时': 1212 },
+        { '日期': '2月', '报名班制': 1223, '预约计时': 123 },
+        { '日期': '3月', '报名班制': 2123, '预约计时': 2342 },
+        { '日期': '4月', '报名班制': 4123, '预约计时': 543 },
+        { '日期': '5月', '报名班制': 3123, '预约计时': 1343 },
+        { '日期': '6月', '报名班制': 6123, '预约计时': 1823 },
+        { '日期': '7月', '报名班制': 5523, '预约计时': 1212 },
+        { '日期': '8月', '报名班制': 4223, '预约计时': 123 },
+        { '日期': '9月', '报名班制': 7123, '预约计时': 2342 },
+        { '日期': '10月', '报名班制': 4123, '预约计时': 543 },
+        { '日期': '11月', '报名班制': 3123, '预约计时': 1343 },
+        { '日期': '12月', '报名班制': 7123, '预约计时': 1823 }
+      ]
+    }
+    this.chartColors4 = [
+      '#19d4ae', '#5ab1ef'
+    ]
+    this.chartSettings4 = {
+      axisSite: {
+        right: ['占比']
+      },
+      yAxisType: [],
+      area: true
+    }
+    // 学员好评率
+    // this.chartData5 = {
+    //   columns: ['日期', '预约计时', '报名班制'],
+    //   rows: [
+    //     { '日期': '1月', '预约计时': 1523, '报名班制': 1523},
+    //     { '日期': '2月', '预约计时': 1223, '报名班制': 2343},
+    //     { '日期': '3月', '预约计时': 2123, '报名班制': 1211},
+    //     { '日期': '4月', '预约计时': 4123, '报名班制': 5444},
+    //     { '日期': '5月', '预约计时': 3123, '报名班制': 1123},
+    //     { '日期': '6月', '预约计时': 7123, '报名班制': 2121}
+    //   ]
+    // }
+    // this.chartSettings5 = {
+    //   dimension: ['日期'],
+    //   metrics: ['预约计时', '报名班制'],
+    //   axisSite: {
+    //     top: ['占比']
+    //   },
+    //   xAxisName: ['销售额', '占比'],
+    //   stack: {
+    //     '销售额': ['预约计时', '报名班制']
+    //   }
+    // }
+    // this.chartColors5 = [
+    //   '#9cbbff', '#f56c6c'
+    // ]
+    // 财务统计
+    this.chartData6 = {
+      columns: ['日期', '报名班制', '预约计时'],
+      rows: [
+        { '日期': '1月', '报名班制': 2523, '预约计时': 1523 },
+        { '日期': '2月', '报名班制': 1223, '预约计时': 1523 },
+        { '日期': '3月', '报名班制': 2123, '预约计时': 1523 },
+        { '日期': '4月', '报名班制': 4123, '预约计时': 1523 },
+        { '日期': '5月', '报名班制': 4123, '预约计时': 1523 },
+        { '日期': '6月', '报名班制': 5123, '预约计时': 1523 },
+        { '日期': '7月', '报名班制': 6123, '预约计时': 1523 },
+        { '日期': '8月', '报名班制': 8123, '预约计时': 1523 },
+        { '日期': '9月', '报名班制': 4123, '预约计时': 1523 },
+        { '日期': '10月', '报名班制': 4123, '预约计时': 1523 },
+        { '日期': '11月', '报名班制': 4123, '预约计时': 1523 },
+        { '日期': '12月', '报名班制': 4123, '预约计时': 1523 },
+      ]
+    }
+    this.chartSettings6 = {}
+    this.chartColors6 = [
+      '#409EFF', '#F56C6C'
+    ]
+    // this.chartColors = [
+    //   '#19d4ae', '#5ab1ef', '#fa6e86',
+    //   '#ffb980', '#0067a6', '#c4b4e4',
+    //   '#d87a80', '#9cbbff', '#d9d0c7',
+    //   '#87a997', '#d49ea2', '#5b4947',
+    //   '#7ba3a8'
+    // ]
     this.grid = { left: 20, right: 20 }
     this.scale = { y: true }
     this.width = '100%'
     this.height = '300px'
-    this.ringchartSettings = {
-      axisSite: {
-        right: ['占比']
-      },
-      yAxisType: ['KMB', 'percent'],
-      area: true
-    }
-    this.ringchartData = {
-      columns: ['日期', '成本', '利润'],
-      rows: [
-        { '日期': '1月1号', '成本': 123, '利润': 3 },
-        { '日期': '1月2号', '成本': 1223, '利润': 6 },
-        { '日期': '1月3号', '成本': 2123, '利润': 90 },
-        { '日期': '1月4号', '成本': 4123, '利润': 12 },
-        { '日期': '1月5号', '成本': 3123, '利润': 15 },
-        { '日期': '1月6号', '成本': 7123, '利润': 20 }
-      ]
-    }
-    this.chartSettings = {
-      dimension: '成本',
-      metrics: '利润'
-    }
   },
   mounted () {
     this.restaurants = this.loadAll()
@@ -223,8 +445,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .box-card {
-    box-shadow: none;
-    border: none;
+    box-shadow: none !important;
+    border: none !important;
     text-align: left;
   }
+  
 </style>
