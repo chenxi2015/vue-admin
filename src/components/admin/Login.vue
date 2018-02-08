@@ -71,6 +71,7 @@ export default {
   },
   methods: {
     submitForm (formName) {
+      var self = this;
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$message({
@@ -78,7 +79,7 @@ export default {
             type: 'success',
             duration: 500,
             onClose: function () {
-              location.href = '/'
+              self.$router.push({path: '/home'});
             }
           })
         } else {
