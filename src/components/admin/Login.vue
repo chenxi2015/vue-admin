@@ -63,9 +63,9 @@ export default {
     }
   },
   computed: {
-    formPaddingStyle: function() {
+    formPaddingStyle: function () {
       return {
-        'padding-top': ( window.innerHeight / 2 - 250 ) + 'px'
+        'padding-top': (window.innerHeight / 2 - 250) + 'px'
       }
     }
   },
@@ -77,8 +77,8 @@ export default {
             message: '登录成功！',
             type: 'success',
             duration: 500,
-            onClose: function() {
-              location.href = "/"
+            onClose: function () {
+              location.href = '/'
             }
           })
         } else {
