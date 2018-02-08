@@ -1,5 +1,11 @@
 <template>
 <div class="school-edit">
+    <!-- <div style="position: absolute; top: 10px; right: 10px;">
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit">立即创建</el-button>
+        <el-button>取消</el-button>
+      </el-form-item>
+    </div> -->
   <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
     <el-tab-pane label="基本信息" name="first" style="padding: 0px 10px;">
       <el-form ref="form" :model="form" label-width="80px" style="width: 460px;">

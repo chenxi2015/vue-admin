@@ -184,19 +184,19 @@
             <div style="padding-top: 20px;">
               <p style="padding: 0px; margin: 0px; color: #999; font-size: 14px;">预约计时金额</p>
               <p style="padding: 0px; margin: 10px 0px; font-size: 24px;">¥ 122323.00</p>
-            </div>            
+            </div>
           </el-col>
           <el-col :span="12" style="padding: 10px;">
             <div style="padding-top: 20px;">
               <p style="padding: 0px; margin: 0px; color: #999; font-size: 14px;">提现金额</p>
               <p style="padding: 0px; margin: 10px 0px; font-size: 24px;">¥ 123123.00</p>
-            </div>           
+            </div>
           </el-col>
           <el-col :span="12" style="padding: 10px;">
             <div style="padding-top: 20px;">
               <p style="padding: 0px; margin: 0px; color: #999; font-size: 14px;">退款金额</p>
               <p style="padding: 0px; margin: 10px 0px; font-size: 24px;">¥ 1212.00</p>
-            </div>          
+            </div>
           </el-col>
         </el-col>
       </el-card>
@@ -368,7 +368,7 @@ export default {
         { '日期': '9月', '报名班制': 4123, '预约计时': 1523 },
         { '日期': '10月', '报名班制': 4123, '预约计时': 1523 },
         { '日期': '11月', '报名班制': 4123, '预约计时': 1523 },
-        { '日期': '12月', '报名班制': 4123, '预约计时': 1523 },
+        { '日期': '12月', '报名班制': 4123, '预约计时': 1523 }
       ]
     }
     this.chartSettings6 = {}
@@ -449,5 +449,4 @@ export default {
     border: none !important;
     text-align: left;
   }
-  
 </style>
