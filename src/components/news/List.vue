@@ -133,8 +133,9 @@ export default {
         type: 2,
         anim: 3,
         shade: false,
-        area: ['800px', '650px'],
-        title: '添加测试'
+        offset: 'bottom',
+        area: ['1200px', '800px'],
+        title: '添加文章'
       })
     },
     handleDel () {
@@ -157,6 +158,9 @@ export default {
   }
 }
 </script>
+<style>
+  .notify .notify-main {background: #F0F2F5 !important;}
+</style>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
