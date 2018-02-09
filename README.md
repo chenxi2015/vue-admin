@@ -8,6 +8,11 @@ npm install
 ```
 npm run dev
 ```
+运行build
+```
+npm run build
+```
+
 访问：http://localhost:8080
 
 demo：http://39.106.47.14/element-demo-template/dist
