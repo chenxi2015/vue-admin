@@ -1,7 +1,7 @@
 <template>
-    <div class="home">
-        <Sidenav></Sidenav>
-    </div>
+  <div class="home">
+    <Sidenav></Sidenav>
+  </div>
 </template>
 
 <script>
@@ -13,11 +13,9 @@ export default {
   },
   components: {Sidenav},
   methods: {
-
   }
 }
 </script>
-
 <style>
 
 </style>

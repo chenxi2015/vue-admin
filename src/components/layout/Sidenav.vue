@@ -44,7 +44,6 @@
             <el-menu-item index="3" style=" border: none !important; padding: 0px;">
               <div class="icon-div" style="cursor: pointer; display: inline-block; width: 60px; text-align: center;">
                 <el-tooltip class="item" effect="dark" content="使用帮助" placement="bottom">
-                  <!-- <i class="el-icon-question" style="font-size: 18px; color: #666;"></i> -->
                   <i class="iconfont icon-102" style="font-size: 18px; color: #666;"></i>
                 </el-tooltip>
               </div>
@@ -68,11 +67,6 @@
                     <el-col :span="8" ><div @click="handleNoticeNav(3)" class="grid-content" :class="[isnActive == 3 ? noticeActive : '']">待办</div></el-col>
                   </el-row>
                 </div>
-                <!-- <el-tabs v-model="activeName" @tab-click="handleClick">
-                  <el-tab-pane label="通知" name="first">通知</el-tab-pane>
-                  <el-tab-pane label="消息" name="second">消息</el-tab-pane>
-                  <el-tab-pane label="待办" name="third">待办</el-tab-pane>
-                </el-tabs> -->
               </el-popover>
             </el-menu-item>
 

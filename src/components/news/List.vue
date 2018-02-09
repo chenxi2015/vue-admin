@@ -3,8 +3,8 @@
     <div class="yj-breadcrumb-div" style="">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>驾校管理</el-breadcrumb-item>
-        <el-breadcrumb-item>驾校列表</el-breadcrumb-item>
+        <el-breadcrumb-item>文章相关</el-breadcrumb-item>
+        <el-breadcrumb-item>文章列表</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
 

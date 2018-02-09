@@ -9,23 +9,30 @@
     </div>
 
     <div style="background: #fff; padding: 24px 32px;" v-loading="loading">
-      <div class="search" style="text-align: center;">
+      <div class="search" style="text-align: left;">
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
-          <el-form-item label="审批人">
-            <el-input v-model="formInline.user" placeholder="审批人"></el-input>
-          </el-form-item>
-          <el-form-item label="活动区域">
-            <el-select v-model="formInline.region" placeholder="活动区域">
-              <el-option label="区域一" value="shanghai"></el-option>
-              <el-option label="区域二" value="beijing"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" icon="el-icon-search" @click="onSubmit">查询</el-button>
-          </el-form-item>
-          <el-form-item >
-            <a href="javascript:;" @click="handleShowAllSearch">展开<i class="el-icon-arrow-down"></i></a>
-          </el-form-item>
+          <el-col :span="8">
+            <el-form-item label="审批人">
+              <el-input v-model="formInline.user" placeholder="审批人"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="活动区域">
+              <el-select v-model="formInline.region" placeholder="活动区域">
+                <el-option label="区域一" value="shanghai"></el-option>
+                <el-option label="区域二" value="beijing"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item>
+              <el-button type="primary" icon="el-icon-search" @click="onSubmit">查询</el-button>
+              <el-button icon="el-icon-search" @click="resetSearch">重置</el-button>
+            </el-form-item>
+            <el-form-item >
+              <a href="javascript:;" @click="handleShowAllSearch">{{searchShowTips}}<i :class="[isSearchShow ? 'el-icon-arrow-up' : 'el-icon-arrow-down']"></i></a>
+            </el-form-item>
+          </el-col>
         </el-form>
       </div>
 
@@ -83,6 +90,8 @@ export default {
       zip: '123123'
     }
     return {
+      searchShowTips: '展开',
+      isSearchShow: false,
       tableData: Array(10).fill(item),
       formInline: {
         user: '',
@@ -116,9 +125,10 @@ export default {
       console.log('submit!')
     },
     handleShowAllSearch () {
+      this.isSearchShow = !this.isSearchShow
+      this.searchShowTips = this.isSearchShow ? '收缩' : '展开'
     },
     handleClick () {
-
     },
     handleRefresh () {
       console.log('OK')
@@ -163,6 +173,8 @@ export default {
           message: '已取消删除'
         })
       })
+    },
+    resetSearch () {
     }
   }
 }

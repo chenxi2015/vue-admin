@@ -7,12 +7,21 @@
       <el-breadcrumb-item>添加文章</el-breadcrumb-item>
     </el-breadcrumb>
   </div>
-  <div style="background: #fff; padding: 24px 32px;">
-    <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
-      <el-tab-pane label="基本信息" name="first" style="padding: 0px 10px;">
-        <el-form ref="form" :model="form" label-width="80px" style="width: 460px;">
-          <el-form-item label="活动名称">
-            <el-input v-model="form.name"></el-input>
+  <div style="">
+    <el-form ref="form" :model="form" label-width="80px" label-position="left" style="">
+      <el-col :span="16" style="padding-right: 10px; margin: 10px 0px;">
+        <el-card class="box-card">
+          <el-form-item label="文章标题">
+            <el-input v-model="form.name" placeholder="请输入标题"></el-input>
+          </el-form-item>
+          <el-form-item label-width="0px" style="line-height: 22px;">
+            <quill-editor ref="myTextEditor"
+                        v-model="content"
+                        :options="editorOption"
+                        @blur="onEditorBlur($event)"
+                        @focus="onEditorFocus($event)"
+                        @ready="onEditorReady($event)">
+            </quill-editor>
           </el-form-item>
           <el-form-item label="活动区域">
             <el-select v-model="form.region" placeholder="请选择活动区域">
@@ -53,18 +62,31 @@
             <el-button type="primary" @click="onSubmit">立即创建</el-button>
             <el-button>取消</el-button>
           </el-form-item>
-        </el-form>
-      </el-tab-pane>
-      <el-tab-pane label="驾校介绍" name="second" style="padding: 0px 10px;">
-        <quill-editor ref="myTextEditor"
-                      v-model="content"
-                      :options="editorOption"
-                      @blur="onEditorBlur($event)"
-                      @focus="onEditorFocus($event)"
-                      @ready="onEditorReady($event)">
-        </quill-editor>
-      </el-tab-pane>
-    </el-tabs>
+        </el-card>
+      </el-col>
+
+      <el-col :span="8" style="margin: 10px 0px;">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>发布</span>
+            <div style="float: right; cursor: pointer; margin-right: 10px;">
+              <el-tooltip class="item" effect="dark" content="使用说明" placement="bottom">
+                <i class="iconfont icon-shuoming" style="color: #999; font-size: 16px;"></i>
+              </el-tooltip>
+            </div>
+          </div>
+          <div style="background: #fff; height: 250px;">
+            <el-form-item label="状态">
+              <el-select v-model="form.isSelected">
+                <el-option label="草稿" value="1"></el-option>
+                <el-option label="等待复审" value="2"></el-option>
+              </el-select>
+            </el-form-item>
+          </div>
+        </el-card>
+      </el-col>
+      <div style="clear: both"></div>
+    </el-form>
   </div>
 </div>
 </template>
@@ -79,6 +101,7 @@ export default {
     return {
       activeName2: 'first',
       form: {
+        isSelected: '1',
         name: '',
         region: '',
         date1: '',
@@ -128,6 +151,11 @@ export default {
 </style>
 
 <style scoped>
+  .box-card {
+    box-shadow: none !important;
+    border: none !important;
+    text-align: left;
+  }
   .el-checkbox-group .el-checkbox {
     float: left;
     width: 160px;

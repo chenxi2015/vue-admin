@@ -1,9 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Sidenav from '@/components/layout/Sidenav'
-// import Home from '@/components/layout/Home'
-// import listIndex from '@/components/list/Index'
-// import DashboardIndex from '@/components/dashboard/Index'
 import AdminLogin from '@/components/admin/Login'
 
 Vue.use(Router)
