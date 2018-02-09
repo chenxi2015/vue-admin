@@ -1,5 +1,5 @@
 <template>
-<div class="school-edit">
+<div class="news-add">
   <div class="yj-breadcrumb-div" style="">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -226,7 +226,6 @@ export default {
 }
 </script>
 <style>
-  /* .school-edit .el-select .el-input {width: 380px !important;} */
   .ql-editor {height: 600px !important;}
 </style>
 
