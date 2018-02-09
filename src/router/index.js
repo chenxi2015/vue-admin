@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import Sidenav from '@/components/layout/Sidenav'
 // import Home from '@/components/layout/Home'
-// import SchoolIndex from '@/components/school/Index'
+// import listIndex from '@/components/list/Index'
 // import DashboardIndex from '@/components/dashboard/Index'
 import AdminLogin from '@/components/admin/Login'
 
@@ -28,33 +28,39 @@ export default new Router({
           component: resolve => require(['../components/dashboard/Index.vue'], resolve)
         },
         {
-          path: '/schoolindex',
-          component: resolve => require(['../components/school/Index.vue'], resolve)
+          path: '/workplace',
+          component: resolve => require(['../components/dashboard/Workplace.vue'], resolve)
         },
         {
-          path: '/schoolshifts',
-          component: resolve => require(['../components/school/Shifts.vue'], resolve)
+          path: '/listindex',
+          component: resolve => require(['../components/list/Index.vue'], resolve)
         },
         {
-          path: '/coachindex',
-          component: resolve => require(['../components/coach/Index.vue'], resolve)
+          path: '/baseform',
+          component: resolve => require(['../components/form/Base.vue'], resolve)
         },
         {
-          path: '/coachtimeset',
-          component: resolve => require(['../components/coach/Timeset.vue'], resolve)
+          path: '/stepform',
+          component: resolve => require(['../components/form/Step.vue'], resolve)
+        },
+        {
+          path: '/newslist',
+          component: resolve => require(['../components/news/List.vue'], resolve)
+        },
+        {
+          path: '/newsadd',
+          component: resolve => require(['../components/news/Add.vue'], resolve)
+        },
+        {
+          path: '/goodslist',
+          component: resolve => require(['../components/goods/List.vue'], resolve)
+        },
+        {
+          path: '/goodsadd',
+          component: resolve => require(['../components/goods/Add.vue'], resolve)
         }
       ]
     },
-    // {
-    //   path: '/dashboard/index',
-    //   name: 'DashboardIndex',
-    //   component: DashboardIndex
-    // },
-    // {
-    //   path: '/school/index',
-    //   name: 'SchoolIndex',
-    //   component: SchoolIndex
-    // },
     {
       path: '/admin/login',
       name: 'AdminLogin',

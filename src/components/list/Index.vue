@@ -8,7 +8,7 @@
       </el-breadcrumb>
     </div>
 
-    <div style="background: #fff; padding: 24px 32px;">
+    <div style="background: #fff; padding: 24px 32px;" v-loading="loading">
       <div class="search" style="text-align: center;">
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
           <el-form-item label="审批人">
@@ -69,7 +69,7 @@
 
 <script>
 // import axios from 'axios'
-import IframeTest from '../IframeTest.vue'
+import Edit from './Edit.vue'
 
 export default {
   name: 'Index',
@@ -88,6 +88,7 @@ export default {
         user: '',
         region: ''
       },
+      loading: true,
       loadingSeen: false,
       navSiderwidthStyle: {
         transition: '0.5s',
@@ -101,7 +102,16 @@ export default {
       }
     }
   },
+  created () {
+    this.openFullScreen()
+  },
   methods: {
+    openFullScreen () {
+      this.loading = true
+      setTimeout(() => {
+        this.loading = false
+      }, 2000)
+    },
     onSubmit () {
       console.log('submit!')
     },
@@ -126,14 +136,14 @@ export default {
     handleAdd () {
       this.$layer.iframe({
         content: {
-          content: IframeTest, // 传递的组件对象
+          content: Edit, // 传递的组件对象
           parent: this, // 当前的vue对象
           data: [] // props
         },
         type: 2,
         anim: 3,
         shade: false,
-        area: ['600px', '600px'],
+        area: ['800px', '650px'],
         title: '添加测试'
       })
     },

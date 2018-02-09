@@ -5,7 +5,7 @@
 .el-header {background-color: #B3C0D1; color: #333; line-height: 60px;}
 .el-aside {color: #333;}
  a {text-decoration: none; color: #409EFF}
-.logo-sider {background: #002140; height: 60px; color: #fff; font-size: 16px; line-height: 60px; overflow: hidden; }
+.logo-sider {background: #002140; height: 60px; color: #fff; font-size: 16px; line-height: 60px; overflow: hidden; text-align: center;}
 .logo-sider img {width: 30px; height: 30px; display: inline-block; vertical-align: middle;}
 .logo-sider h2 {display: inline-block; vertical-align: middle; font-size: 18px; margin:0 0 0 12px;}
 .el-menu-vertical { -webkit-box-shadow: 2px 0 6px rgba(0,21,41,.35); box-shadow: 2px 0 6px rgba(0,21,41,.35);}
@@ -26,5 +26,5 @@
 .yj-header {text-align: right; font-size: 12px; background: #fff; box-shadow: 0 1px 4px rgba(0,21,41,.08);padding-left: 0px; z-index: 99;}
 .yj-header .el-menu--horizontal {border-bottom: none;}
 .yj-breadcrumb-div {padding: 16px 32px 0; background: #fff; border-bottom: 1px solid #e8e8e8; padding-bottom: 16px;}
-.notify .notify-alert h2.notice-title {width: auto !important; margin-top: 0px !important;}
+.notify .notify-alert h2.notice-title {width: auto !important; margin-top: 0px !important; margin-bottom: 10px !important;}
 .notify .notify-iframe {overflow: hidden;}

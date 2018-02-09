@@ -69,7 +69,7 @@
 
 <script>
 // import axios from 'axios'
-import IframeTest from '../IframeTest.vue'
+import Edit from './Add.vue'
 
 export default {
   name: 'Index',
@@ -126,14 +126,14 @@ export default {
     handleAdd () {
       this.$layer.iframe({
         content: {
-          content: IframeTest, // 传递的组件对象
+          content: Edit, // 传递的组件对象
           parent: this, // 当前的vue对象
           data: [] // props
         },
         type: 2,
         anim: 3,
         shade: false,
-        area: ['600px', '600px'],
+        area: ['800px', '650px'],
         title: '添加测试'
       })
     },

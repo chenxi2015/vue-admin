@@ -93,7 +93,7 @@
 
         <!-- content -->
         <el-main>
-          <transition name="move" mode="out-in">
+          <transition name="el-fade-in">
             <router-view/>
           </transition>
         </el-main>
@@ -127,34 +127,40 @@ export default {
             {
               id: '1',
               index: 'dashboardindex',
-              name: '用户画像',
+              name: '统计分析',
               path: '/dashboard/index'
+            },
+            {
+              id: '2',
+              index: 'workplace',
+              name: '工作台',
+              path: '/dashboard/workplace'
             }
-            // {
-            //   id: '2',
-            //   index: 'dashboarddeal',
-            //   name: '交易分析',
-            //   path: '/dashboard/deal'
-            // }
           ]
         },
         {
           id: '2',
           index: '2',
           icon: 'icon-home',
-          name: '驾校管理',
+          name: '列表表单',
           children: [
             {
               id: '1',
-              index: 'schoolindex',
-              name: '驾校列表',
-              path: '/school/index'
+              index: 'listindex',
+              name: '查询表格',
+              path: '/list/index'
             },
             {
-              id: '2',
-              index: 'schoolshifts',
-              name: '班制管理',
-              path: '/school/shifts'
+              id: '1',
+              index: 'baseform',
+              name: '基础表单',
+              path: '/form/base'
+            },
+            {
+              id: '1',
+              index: 'stepform',
+              name: '分布表单',
+              path: '/form/step'
             }
           ]
         },
@@ -162,28 +168,42 @@ export default {
           id: '3',
           index: '3',
           icon: 'icon-group',
-          name: '文章管理',
+          name: '文章相关',
           children: [
             {
               id: '1',
-              index: 'coachindex',
+              index: 'newslist',
               name: '文章列表',
-              path: '/coach/index'
+              path: '/news/list'
             },
             {
               id: '2',
-              index: 'coachtimeset',
-              name: '分类管理',
-              path: '/coach/timeset'
+              index: 'newsadd',
+              name: '添加文章',
+              path: '/news/add'
+            }
+          ]
+        },
+        {
+          id: '4',
+          index: '4',
+          icon: 'icon-group',
+          name: '电商相关',
+          children: [
+            {
+              id: '1',
+              index: 'goodslist',
+              name: '商品列表',
+              path: '/goods/list'
+            },
+            {
+              id: '2',
+              index: 'goodsadd',
+              name: '添加商品',
+              path: '/goods/add'
             }
           ]
         }
-        // {
-        //   id: '4',
-        //   index: 'basecharts',
-        //   icon: 'icon-group',
-        //   name: '图表'
-        // }
       ]
     }
   },
