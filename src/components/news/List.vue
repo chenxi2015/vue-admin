@@ -1,5 +1,5 @@
 <template>
-  <div class="index" style="">
+  <div class="news-list" style="">
     <div class="yj-breadcrumb-div" style="">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
@@ -159,9 +159,9 @@ export default {
 }
 </script>
 <style>
-  .notify .notify-main {background: #F0F2F5 !important;}
 </style>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  /* .news-list .notify .notify-main {background: #F0F2F5 !important;} */
 </style>
