@@ -3,13 +3,13 @@
     <div class="yj-breadcrumb-div" style="">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>驾校管理</el-breadcrumb-item>
-        <el-breadcrumb-item>驾校列表</el-breadcrumb-item>
+        <el-breadcrumb-item>列表表单</el-breadcrumb-item>
+        <el-breadcrumb-item>查询表格</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
 
     <div style="background: #fff; padding: 24px 32px;" v-loading="loading">
-      <div class="search" style="text-align: left;">
+      <div class="search" style="text-align: center;">
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
           <el-col :span="8">
             <el-form-item label="审批人">

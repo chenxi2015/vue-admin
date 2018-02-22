@@ -87,9 +87,9 @@
 
         <!-- content -->
         <el-main>
-          <transition name="el-fade-in">
+          <!-- <transition name="el-fade-in"> -->
             <router-view/>
-          </transition>
+          <!-- </transition> -->
         </el-main>
       </el-container>
     </el-container>

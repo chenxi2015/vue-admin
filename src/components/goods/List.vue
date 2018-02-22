@@ -3,12 +3,12 @@
     <div class="yj-breadcrumb-div" style="">
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item>驾校管理</el-breadcrumb-item>
-        <el-breadcrumb-item>驾校列表</el-breadcrumb-item>
+        <el-breadcrumb-item>电商相关</el-breadcrumb-item>
+        <el-breadcrumb-item>商品列表</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
 
-    <div style="background: #fff; padding: 24px 32px;">
+    <div style="background: #fff; padding: 24px 32px;" v-loading="loading">
       <div class="search" style="text-align: center;">
         <el-form :inline="true" :model="formInline" class="demo-form-inline">
           <el-form-item label="审批人">
@@ -35,18 +35,34 @@
         <el-button type="success" :loading="loadingSeen" @click="handleRefresh" style="float: right;">刷新</el-button>
       </div>
 
-      <el-table :data="tableData" border style="width: 100%">
+      <el-table ref="multipleTable" :data="tableData" border style="width: 100%">
         <el-table-column align="center" type="selection" width="55"></el-table-column>
-        <el-table-column fixed prop="date" label="日期" width="150"></el-table-column>
-        <el-table-column prop="name" label="姓名" width="120"> </el-table-column>
-        <el-table-column prop="province" label="省份" width="120"> </el-table-column>
-        <el-table-column prop="city" label="市区" width="120"> </el-table-column>
-        <el-table-column prop="address" label="地址"> </el-table-column>
-        <el-table-column prop="zip" label="邮编" width="120"> </el-table-column>
+        <el-table-column prop="goods_name" label="商品名称" width="250"> </el-table-column>
+        <el-table-column prop="goods_sn" label="产品编号" width="150"></el-table-column>
+        <el-table-column prop="cate_name" label="所属分类" width="120"> </el-table-column>
+        <el-table-column prop="retail_price" label="零售价" width="120"> </el-table-column>
+        <el-table-column prop="cost_price" label="成本价" width="120"></el-table-column>
+        <el-table-column prop="market_price" label="市场价" width="120"> </el-table-column>
+        <el-table-column prop="goods_order" label="排序" width="120"> </el-table-column>
+        <el-table-column prop="goods_stock" label="库存" width="120"> </el-table-column>
+        <el-table-column prop="goods_status" label="状态">
+          <template slot-scope="scope">
+            <el-tag v-if="scope.row.goods_status == 1" type="success">在售</el-tag>
+          </template>
+        </el-table-column>
         <el-table-column fixed="right" label="操作" width="100">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-            <el-button type="text" size="small">编辑</el-button>
+            <el-dropdown @command="handleCommand">
+              <span class="el-dropdown-link">
+                操作<i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="a">上架</el-dropdown-item>
+                <el-dropdown-item command="b">下架</el-dropdown-item>
+                <el-dropdown-item command="c">编辑</el-dropdown-item>
+                <el-dropdown-item command="e" divided>删除</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
           </template>
         </el-table-column>
       </el-table>
@@ -75,12 +91,21 @@ export default {
   name: 'Index',
   data () {
     const item = {
-      date: '2016-05-02',
+      goods_name: '复古风唐装男士长袖衬衫 韩版修身灯芯绒盘扣莲花秀男式休闲衬衣',
+      goods_sn: 'MS20140504124',
+      cate_name: '衬衫',
+      retail_price: '122.00',
+      cost_price: '100.00',
+      market_price: '200.00',
+      goods_order: 1,
+      goods_stock: 123,
+      goods_status: 1,
       name: '王小虎',
       address: '上海市普陀区金沙江路 1518 弄',
       province: '上海市普陀区金沙江路 1518 弄',
       city: '上海市普陀区金沙江路 1518 弄',
-      zip: '123123'
+      zip: '123123',
+      date: '2016-05-02'
     }
     return {
       tableData: Array(10).fill(item),
@@ -88,6 +113,7 @@ export default {
         user: '',
         region: ''
       },
+      loading: true,
       loadingSeen: false,
       navSiderwidthStyle: {
         transition: '0.5s',
@@ -101,7 +127,19 @@ export default {
       }
     }
   },
+  created () {
+    this.openFullScreen()
+  },
   methods: {
+    openFullScreen () {
+      this.loading = true
+      setTimeout(() => {
+        this.loading = false
+      }, 1000)
+    },
+    handleCommand (command) {
+      this.$message('click on item ' + command)
+    },
     onSubmit () {
       console.log('submit!')
     },
@@ -111,8 +149,12 @@ export default {
 
     },
     handleRefresh () {
-      console.log('OK')
+      var _this = this
       this.loadingSeen = true
+      this.openFullScreen()
+      setTimeout(function () {
+        _this.loadingSeen = false
+      }, 2000)
     },
     handleNav () {
       this.isCollapse = !this.isCollapse
@@ -160,4 +202,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
 </style>
