@@ -141,7 +141,7 @@
               </div>
             </el-col>
           </el-row>
-           <span v-if="currentStoreImg" slot="footer" class="dialog-footer">
+          <span v-if="currentStoreImg" slot="footer" class="dialog-footer">
             <el-button @click="dialogVisible = false">取 消</el-button>
             <el-button type="primary" @click="handleChooseStoreImg">确 定</el-button>
           </span>

@@ -19,7 +19,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="品牌">
-              <el-select v-model="form.type_id" placeholder="请选择类型">
+              <el-select v-model="form.type_id" placeholder="请选择品牌">
                 <el-option label="手机产品" value="1"></el-option>
                 <el-option label="笔记本产品" value="2"></el-option>
                 <el-option label="男士衬衫" value="3"></el-option>
@@ -38,7 +38,38 @@
               <el-input v-model="form.name"></el-input>
             </el-form-item>
             <el-form-item label="">
-              <el-input v-model="form.name"></el-input>
+              <el-table border :data="tableData" style="width: 100%">
+                <el-table-column align="center" prop="date" label="积分" width="">
+                  <template slot-scope="scope">
+                    <el-input v-model="form.name" placeholder=""></el-input>
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" prop="name" label="排序" width="">
+                  <template slot-scope="scope">
+                    <el-input v-model="form.name" placeholder=""></el-input>
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" prop="address" label="计量单位">
+                  <template slot-scope="scope">
+                    <el-input v-model="form.name" placeholder=""></el-input>
+                  </template>
+                </el-table-column>
+                <el-table-column align="center" prop="address" label="是否上架">
+                  <template slot-scope="scope">
+                    <el-switch v-model="form.delivery" active-color="#13ce66"></el-switch>
+                  </template>
+                </el-table-column>
+              </el-table>
+            </el-form-item>
+            <el-form-item label="产品相册">
+              <el-button @click="handleShowUploadDialog" type="primary" icon="el-icon-plus">添加图片</el-button>
+              <el-dialog title="图片库" :visible.sync="dialogVisible" width="820px" height="600px">
+                <my-uploader></my-uploader>
+                <span slot="footer" class="dialog-footer">
+                  <el-button @click="dialogVisible=false">取 消</el-button>
+                  <el-button type="primary">确 定</el-button>
+                </span>
+              </el-dialog>
             </el-form-item>
           </div>
         </el-col>
@@ -92,7 +123,7 @@
       </el-tab-pane>
       <el-tab-pane label="售后保障" name="forth" style="padding: 0px 10px;">
         <quill-editor ref="myTextEditor"
-                      v-model="content"
+                      v-model="description"
                       :options="editorOption"
                       @blur="onEditorBlur($event)"
                       @focus="onEditorFocus($event)"
@@ -108,6 +139,7 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 import { quillEditor } from 'vue-quill-editor'
+import myUploader from './Uploader'
 
 export default {
   data () {
@@ -125,12 +157,22 @@ export default {
         resource: '',
         desc: ''
       },
+      dialogVisible: false,
       content: '你好 我是gengxin',
-      editorOption: {}
+      description: '你好 我是chenxi',
+      editorOption: {},
+      tableData: [
+        {
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }
+      ]
     }
   },
   components: {
-    quillEditor
+    quillEditor,
+    myUploader
   },
   computed: {
     editor () {
@@ -155,6 +197,9 @@ export default {
     },
     onSubmit () {
       console.log('submit!')
+    },
+    handleShowUploadDialog () {
+      this.dialogVisible = true
     }
   }
 }
