@@ -1,5 +1,5 @@
 <template>
-  <div class="myuploader">
+  <div class="myuploader" ref="uploader">
     <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
       <el-tab-pane label="本地图片" name="first" style="">
         <el-upload
@@ -10,6 +10,7 @@
           :on-preview="handlePictureCardPreview"
           :on-remove="handleRemove"
           :on-success="handleImgurlSuccess"
+          :on-error="handleImgurlFail"
           :with-credentials="true"
           :auto-upload="false">
           <i class="el-icon-plus"></i>
@@ -31,6 +32,17 @@
                 </div>
               </div>
             </div>
+            <div style="float: right; margin-top: 20px; text-align: center; width: 100%;">
+              <el-pagination
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page="currentPage"
+                :page-sizes="[10, 20, 30, 40]"
+                :page-size="10"
+                layout="prev, pager, next"
+                :total="400">
+              </el-pagination>
+            </div>
           </el-col>
           <el-popover ref="popover5" placement="top" width="160" v-model="visible">
             <p>删除不可撤销，确定删除吗？</p>
@@ -41,7 +53,7 @@
           </el-popover>
           <el-col :span="8" style=" border-left: 1px solid #ebeef5; padding-left: 20px;">
             <p style="font-weight: bold; border-bottom: 1px solid #ebeef5; padding-bottom: 10px; margin-top: 0px;">附件详情</p>
-            <img :src="currentStoreImg" style="height: 80px;" alt="">
+            <img :src="currentStoreImg[0]" style="height: 80px;" alt="">
             <div style="">
               <p>名称：1.png</p>
               <p>时间：2018年2月12日</p>
@@ -55,7 +67,12 @@
           </el-col>
         </el-row>
       </el-tab-pane>
-      <el-tab-pane label="网络图片" name="third">角色管理</el-tab-pane>
+      <el-tab-pane label="网络图片" name="third">
+        <el-form-item label="网络图片">
+          <el-input v-model="currentStoreImg[0]" placeholder=""></el-input>
+          <p>图片地址必须以http开头,以jpg,png,bmp,gif结束</p>
+        </el-form-item>
+      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
@@ -65,9 +82,10 @@ export default {
   data () {
     return {
       activeName2: 'first',
-      currentStoreImg: '',
+      currentStoreImg: [],
       imgdialogVisible: false,
       dialogImageUrl: '',
+      currentPage: 1,
       imgList: [
         {
           url: 'http://localhost/my-projects/vue-admin/src/assets/images/default/1.png',
@@ -115,18 +133,25 @@ export default {
     handleClick (tab, event) {
       console.log(tab, event)
     },
-    handleImgurlSuccess: function(response, file) {
-        if(response.code != 200) {
-            this.messageNotice('warning', response.data.error)
-            return false                   
-        }
-        console.log(URL.createObjectURL(file.raw))
-        console.log(response.data.url)
-        // this.ruleForm[response.data.type] = URL.createObjectURL(file.raw)
-        // this.ruleForm.lf_pic = response.data.url
+    handleSizeChange (val) {
+      console.log(`每页 ${val} 条`)
+    },
+    handleCurrentChange (val) {
+      console.log(`当前页: ${val}`)
+    },
+    handleImgurlSuccess: function (response, file) {
+      if (response.code !== 200) {
+        return false
+      }
+      console.log(URL.createObjectURL(file.raw))
+      console.log(response.data.url)
+    },
+    handleImgurlFail (e, file, fileList) {
+      this.currentStoreImg.push(URL.createObjectURL(file.raw))
     },
     handleSelectStoreImg (index) {
-      this.currentStoreImg = this.imgList[index].url
+      this.currentStoreImg = []
+      this.currentStoreImg[0] = this.imgList[index].url
       this.imgList.forEach(function (val, key) {
         if (key === index) {
           val.isChoose = true

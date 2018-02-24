@@ -3,7 +3,7 @@
   <el-form ref="form" :model="form" label-position="left" label-width="80px">
     <el-tabs v-model="activeName2" type="card" @tab-click="handleClick">
       <el-tab-pane label="基本信息" name="first" style="padding: 0px 10px;">
-        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="padding-right: 10px; margin: 10px 0px;">
+        <el-col :xs="24" :sm="24" :md="24" :lg="8" :xl="8" style="padding-right: 10px; margin: 10px 0px;">
           <div style="width: 460px;">
             <el-form-item label="分类">
               <el-select v-model="form.cate_id" placeholder="请选择分类">
@@ -63,53 +63,30 @@
             </el-form-item>
             <el-form-item label="产品相册">
               <el-button @click="handleShowUploadDialog" type="primary" icon="el-icon-plus">添加图片</el-button>
+              <div style="margin-top: 10px;">
+                <div v-for="(item, index) in imgList" :key="index" style="margin: 5px; float: left; border: 1px solid #ddd">
+                  <img :src="item" style="width: 100px; height: 100px; border: 2px solid #fff;" alt=""><br/>
+                  <i @click="handleImgPrev(index)" class="el-icon-arrow-left" style="width: 30%; text-align: center; cursor: pointer;"></i>
+                  <i @click="handleImgNext(index)" class="el-icon-arrow-right" style="width: 30%; text-align: center; cursor: pointer;"></i>
+                  <i @click="handleImgDel(index)" class="el-icon-delete" style="width: 30%; text-align: center; cursor: pointer;"></i>
+                </div>
+              </div>
               <el-dialog title="图片库" :visible.sync="dialogVisible" width="820px" height="600px">
-                <my-uploader></my-uploader>
+                <my-uploader ref="myUploader"></my-uploader>
                 <span slot="footer" class="dialog-footer">
                   <el-button @click="dialogVisible=false">取 消</el-button>
-                  <el-button type="primary">确 定</el-button>
+                  <el-button type="primary" @click="handleSelectImg">确 定</el-button>
                 </span>
               </el-dialog>
             </el-form-item>
           </div>
         </el-col>
-        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="padding-right: 10px; margin: 10px 0px;">
-          <el-form-item label="活动时间">
-            <el-col :span="11">
-            <el-date-picker type="date" placeholder="选择日期" v-model="form.date1" style="width: 100%;"></el-date-picker>
-            </el-col>
-            <el-col class="line" :span="2" style="text-align: center;">-</el-col>
-            <el-col :span="11">
-              <el-time-picker type="fixed-time" placeholder="选择时间" v-model="form.date2" style="width: 100%;"></el-time-picker>
-            </el-col>
-          </el-form-item>
-          <el-form-item label="即时配送">
-            <el-switch v-model="form.delivery"></el-switch>
-          </el-form-item>
-          <el-form-item label="活动性质">
-            <el-checkbox-group v-model="form.type">
-              <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox>
-              <el-checkbox label="地推活动" name="type"></el-checkbox>
-              <el-checkbox label="线下主题活动" name="type"></el-checkbox>
-              <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox>
-            </el-checkbox-group>
-          </el-form-item>
-          <el-form-item label="特殊资源">
-            <el-radio-group v-model="form.resource">
-              <el-radio label="线上品牌商赞助"></el-radio>
-              <el-radio label="线下场地免费"></el-radio>
-            </el-radio-group>
-          </el-form-item>
-          <el-form-item label="活动形式">
-            <el-input type="textarea" v-model="form.desc"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="onSubmit">立即创建</el-button>
-            <el-button>取消</el-button>
+        <el-col :xs="24" :sm="24" :md="24" :lg="16" :xl="16" style="padding-right: 10px; margin: 10px 0px;">
+          <el-form-item label="产品规格">
+            <el-input v-model="form.name" placeholder=""></el-input>
           </el-form-item>
         </el-col>
       </el-tab-pane>
-
       <el-tab-pane label="描述信息" name="second" style="padding: 0px 10px;">
         <quill-editor ref="myTextEditor"
                       v-model="content"
@@ -131,6 +108,10 @@
         </quill-editor>
       </el-tab-pane>
     </el-tabs>
+    <el-form-item style="text-align: center; margin-top: 20px;">
+      <el-button type="primary" @click="onSubmit">立即创建</el-button>
+      <el-button>取消</el-button>
+    </el-form-item>
   </el-form>
 </div>
 </template>
@@ -167,7 +148,8 @@ export default {
           name: '王小虎',
           address: '上海市普陀区金沙江路 1518 弄'
         }
-      ]
+      ],
+      imgList: []
     }
   },
   components: {
@@ -200,6 +182,42 @@ export default {
     },
     handleShowUploadDialog () {
       this.dialogVisible = true
+    },
+    handleSelectImg () {
+      var flag = 1
+      var self = this
+      this.dialogVisible = false
+      var currentImgurl = this.$refs.myUploader.currentStoreImg
+      if (currentImgurl.length === 0) {
+        return false
+      }
+      console.log(currentImgurl)
+      if (currentImgurl.length === 1) {
+        this.imgList.forEach(function (val, key) {
+          currentImgurl.forEach(function (v, k) {
+            if (val === v) {
+              flag = 2
+            }
+          })
+        })
+      }
+      if (flag === 1) {
+        currentImgurl.forEach(function (val, key) {
+          self.imgList.push(val)
+        })
+      }
+      this.$refs.myUploader.currentStoreImg = []
+    },
+    handleImgDel (index) {
+      this.imgList.splice(index, 1)
+    },
+    handleImgPrev (index) {
+      this.imgList.splice(index - 1, 0, this.imgList[index])
+      this.imgList.splice(index + 1, 1)
+    },
+    handleImgNext (index) {
+      this.imgList.splice(index + 2, 0, this.imgList[index])
+      this.imgList.splice(index, 1)
     }
   }
 }
