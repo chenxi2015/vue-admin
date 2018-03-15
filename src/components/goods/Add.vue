@@ -71,7 +71,7 @@
                   <i @click="handleImgDel(index)" class="el-icon-delete" style="width: 30%; text-align: center; cursor: pointer;"></i>
                 </div>
               </div>
-              <el-dialog title="图片库" :visible.sync="dialogVisible" width="820px" height="600px">
+              <el-dialog title="图片库" :visible.sync="dialogVisible" append-to-body width="820px" height="600px">
                 <my-uploader ref="myUploader"></my-uploader>
                 <span slot="footer" class="dialog-footer">
                   <el-button @click="dialogVisible=false">取 消</el-button>
