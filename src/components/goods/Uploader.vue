@@ -88,37 +88,37 @@ export default {
       currentPage: 1,
       imgList: [
         {
-          url: 'http://localhost/my-projects/vue-admin/src/assets/images/default/1.png',
+          url: require('@/assets/images/default/1.png'),
           alt: '',
           isChoose: false
         },
         {
-          url: 'http://localhost/my-projects/vue-admin/src/assets/images/default/2.png',
+          url: require('@/assets/images/default/2.png'),
           alt: '',
           isChoose: false
         },
         {
-          url: 'http://localhost/my-projects/vue-admin/src/assets/images/default/3.png',
+          url: require('@/assets/images/default/3.png'),
           alt: '',
           isChoose: false
         },
         {
-          url: 'http://localhost/my-projects/vue-admin/src/assets/images/default/4.png',
+          url: require('@/assets/images/default/4.png'),
           alt: '',
           isChoose: false
         },
         {
-          url: 'http://localhost/my-projects/vue-admin/src/assets/images/default/5.png',
+          url: require('@/assets/images/default/5.png'),
           alt: '',
           isChoose: false
         },
         {
-          url: 'http://localhost/my-projects/vue-admin/src/assets/images/default/6.png',
+          url: require('@/assets/images/default/6.png'),
           alt: '',
           isChoose: false
         },
         {
-          url: 'http://localhost/my-projects/vue-admin/src/assets/images/default/7.png',
+          url: require('@/assets/images/default/7.png'),
           alt: '',
           isChoose: false
         }
